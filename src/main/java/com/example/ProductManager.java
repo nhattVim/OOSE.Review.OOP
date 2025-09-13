@@ -109,13 +109,15 @@ public class ProductManager {
         System.out.println("Enter number of products: ");
         int quantity = scanner.nextInt();
         for (Product product : products) {
-            if (quantity <= 0 || quantity > product.getQuantity()) {
-                System.out.println("Invalid quantity");
-                return;
-            } else if (product.getId() == id) {
-                System.out.println("Ordered " + quantity + " " + product.getName());
-                System.out.println("Total price: " + product.getPrice() * quantity);
-                product.setQuantity(product.getQuantity() - quantity);
+            if (product.getId() == id) {
+                if (quantity <= 0 || quantity > product.getQuantity()) {
+                    System.out.println("Invalid quantity" + quantity + product.getQuantity());
+                    return;
+                } else {
+                    System.out.println("Ordered " + quantity + " " + product.getName());
+                    System.out.println("Total price: " + product.getPrice() * quantity);
+                    product.setQuantity(product.getQuantity() - quantity);
+                }
             }
         }
     }
